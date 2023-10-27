@@ -17,6 +17,14 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.Manifest;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.smart_warehouse.model.ResponseModel;
+import com.example.smart_warehouse.services.RetrofitClient;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     ImageView image;
     TextView text;
     int CAMERA_PICTURE = 1;
+
+    private RetrofitClient retrofitClient;
 
     @SuppressLint({"MissingInflatedId", "WrongViewCast"})
     @Override
@@ -33,7 +43,29 @@ public class MainActivity extends AppCompatActivity {
 
         findingElementsById();
         cameraButtonListenerMethod();
+
     }
+     void connectToServer(View view)
+     {
+         retrofitClient = RetrofitHandler.getInstance().create(RetrofitClient.class);
+
+         Call<ResponseModel> call = retrofitClient.getResponseText();
+
+         call.enqueue(new Callback<ResponseModel>() {
+             @Override
+             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                // Toast.makeText(MainActivity.this, "Odpowiedz z serwera to: " + response.toString(), Toast.LENGTH_LONG).show();
+             }
+
+             @Override
+             public void onFailure(Call<ResponseModel> call, Throwable t) {
+             //    Toast.makeText(MainActivity.this, "Błąd: " + t.toString(), Toast.LENGTH_LONG).show();
+             }
+         });
+
+     }
+
+
     void findingElementsById()
     {
         image = findViewById(R.id.image1);
