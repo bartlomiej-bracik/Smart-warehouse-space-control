@@ -1,10 +1,13 @@
-from flask import Flask
-
+from flask import Flask, render_template
+import image_analyzer as ia
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return 'Test'
+    cout_of_co = ia.analyzer()
+    text1 = "Liczba kontorów: "+ str(cout_of_co)
+    return render_template("index.html",additional_text = text1)
+
 
 
 if __name__ == "__main__":
