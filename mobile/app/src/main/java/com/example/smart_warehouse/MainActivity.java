@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
      {
          retrofitClient = RetrofitHandler.getInstance().create(RetrofitClient.class);
 
+
+
          Call<ResponseModel> call = retrofitClient.getResponseText();
 
          call.enqueue(new Callback<ResponseModel>() {
