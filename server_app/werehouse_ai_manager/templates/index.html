@@ -2,7 +2,14 @@
 <html lang="en">
 <head>
     <style>
-        
+
+        table, th, td {
+          border: 1px solid;
+        }
+
+
+
+
     </style>
 
     <meta charset="UTF-8">
@@ -10,10 +17,29 @@
     <title>Smart werehoust</title>
 </head>
 <body>
-    <h1>Aktualny pomiar</h1>
-     <img src="{{ url_for('static', filename='img/img1.jpg') }}" alt="Obraz" width="30%" >
-    <img src="{{ url_for('static', filename='img/img1_con.jpg') }}" alt="Obraz" width="30%" >
+    <h1>Aktualny pomiar z daty 30.11.2023</h1>
+     <img src="{{ url_for('static', filename='img/img1.jpg') }}" alt="Obraz" width="40%" >
+    <img src="{{ url_for('static', filename='img/img1_con.jpg') }}" alt="Obraz" width="40%" >
     <p>{{ additional_text }}</p>
+
+
+    <button id="">Wczytaj</button>
+
+    <table id="raport_data_table">
+   <thead>
+      <tr>
+         <th>Nr.</th> <th>Data</th> <th>Ilość elementów</th> <th>Procentowe zapełnienie</th> <th>Raport</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <th>1</th> <td>30.11.2023</td> <td>{{ additional_text }}</td> <th>x%</th> <th> Raport AI</th>
+      </tr>
+
+
+      </tr>
+   </tbody>
+</table>
 </body>
 </body>
 </html>

@@ -2,16 +2,11 @@ import cv2
 
 def analyzer():
     image = cv2.imread("static/img/img1.jpg")
-
-    # Konwersja do skali szarości (opcjonalne, zależnie od analizowanego obrazu)
     gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-
-    # Progowanie obrazu (opcjonalne - w celu wyodrębnienia elementów)
     _, threshold = cv2.threshold(gray_image, 127, 255, cv2.THRESH_BINARY)
-
-    # Znalezienie konturów na obrazie
     contours, _ = cv2.findContours(threshold, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
+   
     count_of_counturs = 0
     for contour in contours:
         area = cv2.contourArea(contour)
@@ -37,7 +32,7 @@ def analyzer():
     cv2.resizeWindow('Contours', 1200, 800)
     #cv2.imshow('Contours', image)
     #cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    #cv2.destroyAllWindows()
 
     image_with_contours = image.copy()
     cv2.imwrite("static/img/img1_con.jpg",image_with_contours)
