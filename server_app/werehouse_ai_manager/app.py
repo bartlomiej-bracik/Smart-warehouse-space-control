@@ -5,7 +5,7 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     cout_of_co = ia.analyzer()
-    text1 = "Liczba kontorów: "+ str(cout_of_co)
+    text1 = str(cout_of_co)
     return render_template("index.html",additional_text = text1)
 
 
