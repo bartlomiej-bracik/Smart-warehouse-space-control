@@ -2,11 +2,12 @@ import cv2
 import learning_utils
 def analyzer():
 
-    image = cv2.imread("static/img/img1.jpg")
+    image = cv2.imread("static/img/img2.jpg")
     gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     _, threshold = cv2.threshold(gray_image, 127, 255, cv2.THRESH_BINARY)
+    #_, threshold = cv2.threshold(gray_image, 127, 255, cv2.THRESH_BINARY)
+    #edges = cv2.Canny(gray_image, 50, 150)
     contours, _ = cv2.findContours(threshold, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-
 
     contours_detected = []
     count_of_counturs = 0
@@ -17,7 +18,7 @@ def analyzer():
         epsilon = 0.05 * cv2.arcLength(contour,True)
         approx = cv2.approxPolyDP(contour,epsilon,True)
 
-        if  len(approx) > 3 and len(approx) < 5 and area > 400:
+        if  len(approx) > 3 and len(approx) < 5 and area > 6000:
             contours_detected.append(approx)
             cv2.drawContours(image, [approx], 0, (0, 255, 0), 10)
             count_of_counturs += 1
@@ -28,8 +29,7 @@ def analyzer():
             cordin = learning_utils.Coordinate(x_mid,y_mid)
             img_coordinate.append(cordin)
 
-
-
+    #cv2.drawContours(image, contours, 0, (255, 255, 0), 20)
     textOutput = "Ilosc znalezionych elementow:" + str(count_of_counturs)
     coords = (200, 50)
     color = (1, 1, 1)
@@ -44,16 +44,13 @@ def analyzer():
     cv2.imwrite("static/img/img1_con.jpg",image_with_contours)
 
 
- #   for d in img_coordinate:
-  #      print (d.x)
-
     return img_coordinate
 
 
 
 
-analyzer()
-data = analyzer()
-test = learning_utils.Feature( data,0,0)
-test.print_data()
-print("Srednia X",test.calculate_avrX())
+#analyzer()
+#data = analyzer()
+#test = learning_utils.Feature( data,0,0)
+#test.print_data()
+#print("Srednia X",test.calculate_avrX())

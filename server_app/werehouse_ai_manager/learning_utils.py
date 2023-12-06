@@ -29,7 +29,11 @@ class Feature:
             sum = sum + n.y
         avr = sum/len(numbers)
         return avr
-
+    def calculate_radius(self):
+        numbers = self.img_coordinate
+        c = []
+        for n in numbers:
+            c1 = 1
 
 
     def getFeature(self):
