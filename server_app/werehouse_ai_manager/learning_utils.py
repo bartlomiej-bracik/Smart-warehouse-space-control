@@ -14,6 +14,10 @@ class Feature:
         self.percent_full = percent_full
         self.count_of_counturs = count_of_counturs
         self.img_coordinate = img_coordinate
+        self.avr_coordinateX = self.calculate_avrX()
+        self.avr_coordinateY = self.calculate_avrY()
+        self.avr_radius = 0
+        self.avr_number_of_neighbors = 0
 
     def calculate_avrX(self):
         numbers = self.img_coordinate
@@ -34,6 +38,10 @@ class Feature:
         c = []
         for n in numbers:
             c1 = 1
+
+    def calculate_all(self):
+        print("calculated")
+
 
 
     def getFeature(self):

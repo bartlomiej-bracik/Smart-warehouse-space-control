@@ -18,12 +18,10 @@
 </head>
 <body>
     <h1>Aktualny pomiar z daty 30.11.2023</h1>
-     <img src="{{ url_for('static', filename='img/img1.jpg') }}" alt="Obraz" width="40%" >
+     <img src="{{ url_for('static', filename='img/img4.jpg') }}" alt="Obraz" width="40%" >
     <img src="{{ url_for('static', filename='img/img1_con.jpg') }}" alt="Obraz" width="40%" >
 
 
-
-    <button id="">Wczytaj</button>
 
     <table id="raport_data_table">
    <thead>
@@ -36,10 +34,13 @@
          <th>1</th> <td>30.11.2023</td> <td>{{ additional_text }}</td> <th>x%</th> <th> Raport AI</th>
       </tr>
 
-
       </tr>
    </tbody>
 </table>
+<form method="post" action="/upload" enctype="multipart/form-data">
+    <input type="file" id="image_input" name="uploaded_image" accept=".jpg, .jpeg, .png">
+    <button type="submit">Prześlij obraz</button>
+</form>
 </body>
 </body>
 </html>

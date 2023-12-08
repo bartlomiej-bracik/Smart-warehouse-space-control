@@ -1,8 +1,11 @@
 import cv2
 import learning_utils
-def analyzer():
+def analyzer(path):
 
-    image = cv2.imread("static/img/img2.jpg")
+    if(path == ''):
+        image = cv2.imread("static/img/img2.jpg")
+    else:
+        image = cv2.imread(path)
     gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     _, threshold = cv2.threshold(gray_image, 127, 255, cv2.THRESH_BINARY)
     #_, threshold = cv2.threshold(gray_image, 127, 255, cv2.THRESH_BINARY)
@@ -49,8 +52,3 @@ def analyzer():
 
 
 
-#analyzer()
-#data = analyzer()
-#test = learning_utils.Feature( data,0,0)
-#test.print_data()
-#print("Srednia X",test.calculate_avrX())
