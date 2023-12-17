@@ -1,0 +1,5 @@
+# requirements.txt
+
+Flask==2.0.1
+scikit-learn==0.24.2
+opencv-python==4.5.3.56
