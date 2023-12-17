@@ -18,7 +18,7 @@ def analyzer(path):
 
     for contour in contours:
         area = cv2.contourArea(contour)
-        epsilon = 0.05 * cv2.arcLength(contour,True)
+        epsilon = 0.15 * cv2.arcLength(contour,True)
         approx = cv2.approxPolyDP(contour,epsilon,True)
 
         if  len(approx) > 3 and len(approx) < 5 and area > 6000:
@@ -32,7 +32,7 @@ def analyzer(path):
             cordin = learning_utils.Coordinate(x_mid,y_mid)
             img_coordinate.append(cordin)
 
-    #cv2.drawContours(image, contours, 0, (255, 255, 0), 20)
+    cv2.drawContours(image, contours, 0, (255, 255, 0), 20)
     textOutput = "Ilosc znalezionych elementow:" + str(count_of_counturs)
     coords = (200, 50)
     color = (1, 1, 1)

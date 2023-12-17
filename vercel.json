@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "builds": [{ "src": "server_app/werehouse_ai_manager/app.py", "use": "@now/python" }],
+  "routes": [
+    { "src": "server_app/werehouse_ai_manager/app.py", "use": "@now/python" }
+  ]
+}
