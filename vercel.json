@@ -1,16 +1,19 @@
+
 {
-
-"builds": [
-  {
-    "src": "/server_app/werehouse_ai_manager/app.py",
-    "use": "@vercel/python"
-  }
-],
-
-
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/server_app/werehouse_ai_manager/" }
+  "version": 2,
+  "builds": [
+    {
+      "src": "server_app/werehouse_ai_manager/app.py",
+      "use": "@now/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "server_app/werehouse_ai_manager/app.py"
+    }
   ]
-
-
 }
+
+
+
