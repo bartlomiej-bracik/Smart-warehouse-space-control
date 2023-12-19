@@ -1,7 +1,23 @@
-
 {
+"versions" : 2,
+
+"functions": {
+  "api": {
+    "handler": "app.app",
+    "runtime": "python3.8"
+  }
+},
+
+
+"builds": {
+    "src": "./server_app./werehouse_ai_manager./app.py",
+    "use": "@vercel/python"
+},
+
+
   "rewrites": [
     { "source": "/(.*)", "destination": "/server_app/werehouse_ai_manager/app" }
   ]
-}
 
+
+}
