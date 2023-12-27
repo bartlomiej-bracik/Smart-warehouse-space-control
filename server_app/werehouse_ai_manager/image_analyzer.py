@@ -31,7 +31,6 @@ def analyzer(path):
             y_mid = y + w/2
             cordin = learning_utils.Coordinate(x_mid,y_mid)
             img_coordinate.append(cordin)
-
     cv2.drawContours(image, contours, 0, (255, 255, 0), 20)
     textOutput = "Ilosc znalezionych elementow:" + str(count_of_counturs)
     coords = (200, 50)
