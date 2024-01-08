@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
+from flask_sslify import SSLify
 import learning_utils
 import image_analyzer as ia
 import trainer as tr
@@ -10,10 +11,10 @@ CORS(app)
 def index():
     analyzer_respnse = ia.analyzer('static/img/img4.jpg')
     feature = learning_utils.Feature(analyzer_respnse,0)
-    text1 = feature.getFeature()
-    className = tr.classify(text1)
+    feututeOutput = feature.getFeature()
+    className = str( tr.classify(feututeOutput)).replace("[\'","").replace("\']","")
     #text1 = str(cout_of_co)
-    return render_template("index.html",additional_text = className)
+    return render_template("index.html",count_of_el=feututeOutput[0],ai_raport = className)
 
 
 
@@ -36,5 +37,5 @@ def upload():
         return jsonify({ 'message': 'File uploaded successfully'})
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0',debug=True)
+    app.run(ssl_context='adhoc', host='0.0.0.0',debug=True)
 

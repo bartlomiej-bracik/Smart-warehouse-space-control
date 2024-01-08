@@ -7,10 +7,10 @@ def analyzer(path):
     else:
         image = cv2.imread(path)
     gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    _, threshold = cv2.threshold(gray_image, 127, 255, cv2.THRESH_BINARY)
+    _, threshold = cv2.threshold(gray_image, 110, 200, cv2.THRESH_BINARY)
     #_, threshold = cv2.threshold(gray_image, 127, 255, cv2.THRESH_BINARY)
     #edges = cv2.Canny(gray_image, 50, 150)
-    contours, _ = cv2.findContours(threshold, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    contours, _ = cv2.findContours(threshold, cv2.RETR_CCOMP, cv2.CHAIN_APPROX_SIMPLE)
 
     contours_detected = []
     count_of_counturs = 0
@@ -21,7 +21,7 @@ def analyzer(path):
         epsilon = 0.15 * cv2.arcLength(contour,True)
         approx = cv2.approxPolyDP(contour,epsilon,True)
 
-        if  len(approx) > 3 and len(approx) < 5 and area > 6000:
+        if  len(approx) > 3 and len(approx) < 5 and area > 6000 and area < 100000  :
             contours_detected.append(approx)
             cv2.drawContours(image, [approx], 0, (0, 255, 0), 10)
             count_of_counturs += 1

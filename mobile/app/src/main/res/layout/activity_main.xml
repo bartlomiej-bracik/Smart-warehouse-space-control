@@ -51,16 +51,27 @@
 
     <ImageView
         android:id="@+id/image1"
-        android:layout_width="296dp"
-        android:layout_height="410dp"
+        android:layout_width="189dp"
+        android:layout_height="393dp"
         android:contentDescription="Image"
         app:layout_constraintBottom_toTopOf="@+id/infoButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.072"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:srcCompat="@drawable/ic_launcher_foreground"
 
-        />
+        app:srcCompat="@drawable/ic_launcher_foreground" />
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="206dp"
+        android:layout_height="393dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/image1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.443" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

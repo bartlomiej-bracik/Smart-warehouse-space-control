@@ -12,15 +12,21 @@ import android.os.Bundle;
 import android.os.Debug;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.Manifest;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.smart_warehouse.model.ResponseModel;
-import com.example.smart_warehouse.services.RetrofitClient;
+import java.util.List;
+
+import retrofit2.Call;
+
+//import com.example.smart_warehouse.model.ResponseModel;
+//import com.example.smart_warehouse.services.RetrofitClient;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,12 +34,13 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
+    ListView myList;
     ImageButton cameraButton;
     ImageView image;
     TextView text;
     int CAMERA_PICTURE = 1;
 
-    private RetrofitClient retrofitClient;
+    //private RetrofitClient retrofitClient;
 
     @SuppressLint({"MissingInflatedId", "WrongViewCast"})
     @Override
@@ -41,32 +48,35 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        myList = (ListView) findViewById(R.id.list);
+        connectToServer();
         findingElementsById();
         cameraButtonListenerMethod();
-
     }
-     void connectToServer(View view)
+      void connectToServer()//(View view)
      {
-         retrofitClient = RetrofitHandler.getInstance().create(RetrofitClient.class);
+            Call<List<Results>> call = RetrofitClient.getInstance().getMyApi().getsuperHeroes();
+        call.enqueue(new Callback<List<Results>>() {
+            @Override
+            public void onResponse(Call<List<Results>> call, Response<List<Results>> response) {
+                List<Results> myHeroList = response.body();
+                String[] oneHeroes = new String[myHeroList.size()];
 
+                for(int i = 0 ; i < myHeroList.size();i++){
+                    oneHeroes[i] = myHeroList.get(i).getName();
+                }
 
+                myList.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, oneHeroes));
+            }
 
-         Call<ResponseModel> call = retrofitClient.getResponseText();
+            @Override
+            public void onFailure(Call<List<Results>> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "An error has occured", Toast.LENGTH_LONG).show();
 
-         call.enqueue(new Callback<ResponseModel>() {
-             @Override
-             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
-                // Toast.makeText(MainActivity.this, "Odpowiedz z serwera to: " + response.toString(), Toast.LENGTH_LONG).show();
-             }
-
-             @Override
-             public void onFailure(Call<ResponseModel> call, Throwable t) {
-             //    Toast.makeText(MainActivity.this, "Błąd: " + t.toString(), Toast.LENGTH_LONG).show();
-             }
-         });
+            }
+        });
 
      }
-
 
     void findingElementsById()
     {
