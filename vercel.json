@@ -1,14 +1,8 @@
 
 {
-  "version": 2,
-
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "server_app/werehouse_ai_manager/app.py"
-    }
+  "rewrites": [
+    { "source": "/(.*)", "destination": "server_app/werehouse_ai_manager/app" }
   ]
 }
-
 
 
