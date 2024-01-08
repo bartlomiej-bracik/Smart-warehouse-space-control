@@ -1,7 +1,7 @@
 
 {
   "rewrites": [
-    { "source": "/(.*)", "destination": "server_app/werehouse_ai_manager/index" }
+    { "source": "/(.*)", "destination": "server_app/werehouse_ai_manager/index.py" }
   ]
 }
 
