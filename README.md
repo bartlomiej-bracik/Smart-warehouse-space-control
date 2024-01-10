@@ -1,6 +1,6 @@
 # Smart-warehouse-space-control
 
-Projekt jest prototypem systemu odpowiedzialnego za załadunek oraz rozładunek magazynu buforowego. Określanie stanu magazynu odbywa sięprzy użyciu algorytmó sztucznej inteligencji. Projekt został zaimplementowany w jezyku Python wraz z biblotekami Flask, OpenCV oraz scit-learn.
+Projekt jest prototypem systemu odpowiedzialnego za załadunek oraz rozładunek magazynu buforowego. Określanie stanu magazynu odbywa sięprzy użyciu algorytmów sztucznej inteligencji. Projekt został zaimplementowany w jezyku Python wraz z biblotekami Flask, OpenCV oraz scit-learn.
 
 ## Spis treści
 
@@ -47,7 +47,8 @@ Po instalacji należy uruchomić projekt za pomocą:
 
 ```bash
     python app.py
-    ```
+```
+
 
 Nastepnie należy otworzyć strone z lokalnego adresu.Strona umożliwia przesyłanie zdjecia ( będącego pomiarem w prototypowym magazynie) do analizy obrazu. Serwer zwraca raport stworzony przez AI.
 
