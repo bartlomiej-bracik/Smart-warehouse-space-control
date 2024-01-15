@@ -50,7 +50,7 @@ def createDatasetfromImages():
 def getFeaturesbyAnalyzer(fill_names,path):
     for f in fill_names:
         analyzer = ia.analyzer(path+"/" + str(f))
-        features = lu.Feature(analyzer, 0)
+        features = lu.Feature(analyzer[0], 0)
         d = features.getFeature()
         d = d + [path.replace("train_data/","")]
         #print(d)
@@ -126,3 +126,6 @@ def classify(f):
     model = joblib.load('model.pkl')
     className = model.predict([f])
     return className
+
+
+

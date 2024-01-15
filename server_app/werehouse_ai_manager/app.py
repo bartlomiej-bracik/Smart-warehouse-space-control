@@ -4,13 +4,14 @@ from flask_sslify import SSLify
 import learning_utils
 import image_analyzer as ia
 import trainer as tr
+import trainer2 as tr2
 app = Flask(__name__)
 CORS(app)
 
 @app.route('/')
 def index():
     analyzer_respnse = ia.analyzer('static/img/img4.jpg')
-    feature = learning_utils.Feature(analyzer_respnse,0)
+    feature = learning_utils.Feature(analyzer_respnse[0],analyzer_respnse[1],analyzer_respnse[2])
     feututeOutput = feature.getFeature()
     className = str( tr.classify(feututeOutput)).replace("[\'","").replace("\']","")
     #text1 = str(cout_of_co)
@@ -22,6 +23,11 @@ def index():
 @app.route('/learn')
 def learn():
     tr.createDatasetfromImages()
+    return index()
+
+@app.route('/learn2')
+def learn2():
+    tr2.lerning()
     return index()
 @app.route('/upload', methods=['POST'])
 def upload():
@@ -37,5 +43,5 @@ def upload():
         return jsonify({ 'message': 'File uploaded successfully'})
 
 if __name__ == "__main__":
-    app.run(ssl_context='adhoc', host='0.0.0.0',debug=True)
-
+    #app.run(ssl_context='adhoc', host='0.0.0.0',debug=True)
+    app.run( host='0.0.0.0',debug=True)
