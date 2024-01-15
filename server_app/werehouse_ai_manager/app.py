@@ -11,11 +11,11 @@ CORS(app)
 @app.route('/')
 def index():
     analyzer_respnse = ia.analyzer('static/img/img4.jpg')
-    feature = learning_utils.Feature(analyzer_respnse[0],analyzer_respnse[1],analyzer_respnse[2])
+    feature = learning_utils.Feature(analyzer_respnse[0],analyzer_respnse[1])
     feututeOutput = feature.getFeature()
     className = str( tr.classify(feututeOutput)).replace("[\'","").replace("\']","")
     #text1 = str(cout_of_co)
-    return render_template("index.html",count_of_el=feututeOutput[0],ai_raport = className)
+    return render_template("index.html",count_of_el=feututeOutput[0],percent = str(analyzer_respnse[1]) ,ai_raport = className)
 
 
 

@@ -11,7 +11,7 @@ class Feature:
     avr_radius = 0
     avr_number_of_neighbors = 0
     count_of_counturs = 0
-    def __init__(self,img_coordinate ,center_cordian,space_areaa):
+    def __init__(self,img_coordinate ,percent_full):
         self.img_coordinate = img_coordinate
 
         self.percent_full = percent_full

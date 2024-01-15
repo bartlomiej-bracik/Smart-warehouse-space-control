@@ -18,8 +18,9 @@ def analyzer(path):
     #edges = cv2.Canny(gray_image, 50, 150)
     contours, _ = cv2.findContours(threshold, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
     cv2.drawContours(image, contours, 1, (0, 255, 0), 12)
-    contours_detected = []
 
+    contours_detected = []
+    contours_area = 0
 
     count_of_counturs = 0
     img_coordinate = []
@@ -39,6 +40,8 @@ def analyzer(path):
             x_mid = x+w/2
             y_mid = y + w/2
             cordin = learning_utils.Coordinate(x_mid,y_mid)
+            contours_area = contours_area + area
+
             img_coordinate.append(cordin)
         #Współrzędne środka przestrzeni magazynowej
         if len(approx) > 3 and len(approx) < 5 and area > 100000 and area < 2000000 :
@@ -50,6 +53,8 @@ def analyzer(path):
             y_mid = y + w / 2
             cordian_center = learning_utils.Coordinate(x_mid,y_mid)
             space_area = area
+
+
     textOutput = "Ilosc znalezionych elementow:" + str(count_of_counturs)
     coords = (200, 50)
     color = (1, 1, 1)
@@ -63,10 +68,10 @@ def analyzer(path):
     image_with_contours = image.copy()
     cv2.imwrite("static/img/img1_con.jpg",image_with_contours)
 
-    height, width, channels = image.shape
-    center = (width/2,height/2)
+    if(space_area > 0):
+        percent_full = round(((contours_area/space_area)*100),2)
 
-    return [img_coordinate,cordian_center,space_area ]
+    return [img_coordinate, percent_full]
 
 
 
