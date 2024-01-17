@@ -13,14 +13,12 @@ import retrofit2.http.Part;
 
 public interface Api {
 
-    String BASE_URL2 = "https://simplifiedcoding.net/demos/";
-    String BASE_URL = "https://bartekbb98.pythonanywhere.com/";
 
-    String BASE_URL1 = "http://192.168.1.12:5000";
-    @GET("marvel")
-    Call<List<Results>> getsuperHeroes();
+    //String BASE_URL3 = "https://bartekbb98.pythonanywhere.com/";
+    String BASE_URL = "https://192.168.55.103:5000";
 
-    @POST("upload")
-    Call<ApiResponse> uploadImage(@Body RequestBody content );
+
+    @POST("upload_mobile")
+    Call<ApiResponse> uploadImage(@Body String content );
 
 }

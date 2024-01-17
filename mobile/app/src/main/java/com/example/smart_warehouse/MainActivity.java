@@ -60,65 +60,25 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-      void connectToServer()//(View view)
-     {
-            Call<List<Results>> call = RetrofitClient.getInstance().getMyApi().getsuperHeroes();
-        call.enqueue(new Callback<List<Results>>() {
+
+    void uploadBase64onServer(String str)
+    {
+        RetrofitClient retrofitClient = RetrofitClient.getInstance();
+
+
+        Call<ApiResponse> call1 = retrofitClient.getMyApi().uploadImage(str);
+        call1.enqueue(new Callback<ApiResponse>() {
             @Override
-            public void onResponse(Call<List<Results>> call, Response<List<Results>> response) {
-                List<Results> myHeroList = response.body();
-                String[] oneHeroes = new String[myHeroList.size()];
-
-                for(int i = 0 ; i < myHeroList.size();i++){
-                    oneHeroes[i] = myHeroList.get(i).getName();
-                }
-
-                myList.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, oneHeroes));
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                text.setText("Zapytanie POST zostało wysłane bez odpowiedzi");
             }
 
             @Override
-            public void onFailure(Call<List<Results>> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "An error has occured", Toast.LENGTH_LONG).show();
-
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+                text.setText("Błąd: " + t.getMessage());
             }
         });
-
-     }
-
-     void uploadImageOnServer()
-     {
-         RetrofitClient retrofitClient = RetrofitClient.getInstance();
-
-         String requestData = "{ \"test\": \"test\" }";
-         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),requestData);
-         Call<ApiResponse> call1 = retrofitClient.getMyApi().uploadImage(requestBody);
-         try {
-             Response<ApiResponse> response = call1.execute();
-
-             if (response.isSuccessful()) {
-                 // Sukces - kod 2xx
-                 text.setText("Zapytanie POST zostało wysłane bez odpowiedzi");
-             } else {
-                 // Błąd - obsłuż błędny kod odpowiedzi
-                 text.setText("Błąd: " + response.code());
-             }
-         } catch (IOException e) {
-             // Obsłuż błąd wykonania zapytania
-             e.printStackTrace();
-         }
-         /*call1.enqueue(new Callback<ApiResponse>() {
-             @Override
-             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
-                    text.setText("Działa");
-             }
-
-             @Override
-             public void onFailure(Call<ApiResponse> call, Throwable t) {
-              text.setText(t.getMessage());
-             }
-         }); */
-
-     }
+    }
 
     public static byte[] bitmapToBytes(Bitmap photo) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -164,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
         infoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                connectToServer();
+
             }
         });
 
@@ -178,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
 
             byte[] bytesImages = bitmapToBytes(picture);
             strBase64withImage = bytesToBase64(bytesImages);
-            uploadImageOnServer();
+            uploadBase64onServer(strBase64withImage);
 
 
         }

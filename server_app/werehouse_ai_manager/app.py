@@ -42,6 +42,25 @@ def upload():
             image_file.save('static/img/img4.jpg')
         return jsonify({ 'message': 'File uploaded successfully'})
 
+@app.route('/upload_mobile', methods=['POST'])
+def obsluz_post():
+    if request.method == 'POST':
+        try:
+            dane = request.get_data(as_text=True)
+            print("Otrzymane dane:", dane)
+
+
+            response = { 'message': 'Dane odebrane poprawnie'}
+            return jsonify(response)
+
+        except Exception as e:
+            print("Błąd podczas obsługi żądania POST:", str(e))
+            response = { 'message': 'Błąd podczas obsługi żądania'}
+            return jsonify(response)
+
+
+
+
 if __name__ == "__main__":
-    #app.run(ssl_context='adhoc', host='0.0.0.0',debug=True)
-    app.run( host='0.0.0.0',debug=True)
+    app.run(ssl_context='adhoc', host='0.0.0.0',debug=True)
+    #app.run( host='0.0.0.0',debug=True)

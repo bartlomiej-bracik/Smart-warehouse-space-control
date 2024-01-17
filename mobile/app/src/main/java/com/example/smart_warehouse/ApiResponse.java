@@ -1,6 +1,9 @@
 package com.example.smart_warehouse;
 
+import com.google.gson.annotations.SerializedName;
+
 public class ApiResponse {
+    @SerializedName("message")
     private String massage;
 
     public String getMassage()
