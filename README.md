@@ -1,6 +1,7 @@
 # Smart-warehouse-space-control
 
 Projekt jest prototypem systemu odpowiedzialnego za załadunek oraz rozładunek magazynu buforowego. Określanie stanu magazynu odbywa sięprzy użyciu algorytmów sztucznej inteligencji. Projekt został zaimplementowany w jezyku Python wraz z biblotekami Flask, OpenCV oraz scit-learn.
+Aplikacja mobilna na urządzenie z systemem Android jest odpowiedzialna za przesyłanie pomiarów w postaci obrazu oraz za 
 
 ## Spis treści
 
@@ -51,4 +52,8 @@ Po instalacji należy uruchomić projekt za pomocą:
 
 
 Nastepnie należy otworzyć strone z lokalnego adresu.Strona umożliwia przesyłanie zdjecia ( będącego pomiarem w prototypowym magazynie) do analizy obrazu. Serwer zwraca raport stworzony przez AI.
+
+![Widok strony]description\web.jpg)
+
+Folder ...\Smart-warehouse-space-control\mobile  uruchamia się za pomocą programu Android Studio. Aplikacja pozwala na wykonywanie pomiarów oraz otrzymywanie raportu AI.
 
