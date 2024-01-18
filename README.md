@@ -53,7 +53,7 @@ Po instalacji należy uruchomić projekt za pomocą:
 
 Nastepnie należy otworzyć strone z lokalnego adresu.Strona umożliwia przesyłanie zdjecia ( będącego pomiarem w prototypowym magazynie) do analizy obrazu. Serwer zwraca raport stworzony przez AI.
 
-![Widok strony](description/web.JPG)
+![Widok strony](./description/web.JPG)
 
 Folder ...\Smart-warehouse-space-control\mobile  uruchamia się za pomocą programu Android Studio. Aplikacja pozwala na wykonywanie pomiarów oraz otrzymywanie raportu AI.
 
