@@ -1,9 +1,11 @@
 package com.example.smart_warehouse;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -36,7 +38,7 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     ListView myList;
-    ImageButton cameraButton,infoButton;
+    ImageButton cameraButton,infoButton,settingsButton;
     ImageView image;
     TextView text;
     Bitmap imageBitmap;
@@ -57,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         findingElementsById();
         cameraButtonListenerMethod();
         infoButtonListenerMethod();
+        settingsButtonListenerMethod();
 
 
     }
@@ -82,12 +85,12 @@ public class MainActivity extends AppCompatActivity {
 
     public static byte[] bitmapToBytes(Bitmap photo) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        photo.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        photo.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         return stream.toByteArray();
     }
 
     public static String bytesToBase64(byte[] bytes) {
-        final String base64 = Base64.encodeToString(bytes, 0);
+        final String base64 = Base64.encodeToString(bytes, Base64.DEFAULT);
         return base64;
     }
 
@@ -99,8 +102,8 @@ public class MainActivity extends AppCompatActivity {
         cameraButton = findViewById(R.id.cameraButton);
         infoButton = findViewById(R.id.infoButton);
         text = findViewById(R.id.textView);
-        myList = (ListView) findViewById(R.id.list);
-
+      //  myList = (ListView) findViewById(R.id.list);
+        settingsButton = findViewById(R.id.settingsBtn);
     }
     private void cameraButtonListenerMethod()
     {
@@ -110,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
                 if ( checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED)
                 {
                     Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    //fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
                     startActivityForResult(cameraIntent,CAMERA_PICTURE);
                 }
                 else {
@@ -119,6 +123,37 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void settingsButtonListenerMethod(){
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+                builder.setTitle("Wybór metody klasyfikacji").setMessage("Prosze wybrać metode");
+
+                builder.setPositiveButton("Binarna", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        Toast.makeText(MainActivity.this,"Wybrano metode Binarną",Toast.LENGTH_LONG).show();
+
+                        dialogInterface.dismiss();
+                    }
+                });
+
+                builder.setNegativeButton("Metoda na podstawie cech z OpenCV", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(MainActivity.this,"Metoda na podstawie cech z analizy OpenCV",Toast.LENGTH_LONG).show();
+                        dialogInterface.cancel();
+                    }
+                });
+                AlertDialog alertDialog =builder.create();
+                alertDialog.show();
+
+            }
+        });
+    }
     private void infoButtonListenerMethod()
     {
         infoButton.setOnClickListener(new View.OnClickListener() {

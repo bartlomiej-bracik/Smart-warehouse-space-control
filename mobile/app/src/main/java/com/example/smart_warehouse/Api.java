@@ -15,7 +15,7 @@ public interface Api {
 
 
     //String BASE_URL3 = "https://bartekbb98.pythonanywhere.com/";
-    String BASE_URL = "https://192.168.55.103:5000";
+    String BASE_URL = "https://192.168.55.102:5000";
 
 
     @POST("upload_mobile")

@@ -8,17 +8,33 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="281dp"
-        android:layout_height="82dp"
+        android:layout_width="342dp"
+        android:layout_height="92dp"
+        android:background="@color/gray"
         android:text="Smart Werehouse "
         android:textAlignment="center"
         android:textSize="14sp"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.064" />
+        app:layout_constraintVertical_bias="0.045" />
+
+    <ImageButton
+        android:id="@+id/settingsBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:contentDescription="Ustawienia"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.68"
+        app:srcCompat="@android:drawable/ic_menu_manage" />
 
     <ImageButton
         android:id="@+id/cameraButton"
@@ -28,7 +44,7 @@
         android:contentDescription="Uruchom Camere"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/infoButton"
-        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintHorizontal_bias="0.36"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintVertical_bias="1.0"
@@ -38,9 +54,9 @@
         android:id="@+id/infoButton"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginEnd="76dp"
+        android:layout_marginEnd="52dp"
         android:layout_marginBottom="50dp"
-        android:contentDescription="Informacija z serwera"
+        android:contentDescription="Informacja z serwera"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
@@ -50,27 +66,17 @@
 
     <ImageView
         android:id="@+id/image1"
-        android:layout_width="189dp"
-        android:layout_height="393dp"
+        android:layout_width="304dp"
+        android:layout_height="340dp"
         android:contentDescription="Image"
         app:layout_constraintBottom_toTopOf="@+id/infoButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.072"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
+
         app:layout_constraintTop_toBottomOf="@+id/textView"
-
+        app:layout_constraintVertical_bias="0.335"
         app:srcCompat="@drawable/ic_launcher_foreground" />
-
-    <ListView
-        android:id="@+id/list"
-        android:layout_width="206dp"
-        android:layout_height="393dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/image1"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.461" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

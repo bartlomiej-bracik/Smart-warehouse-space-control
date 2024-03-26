@@ -13,14 +13,15 @@ def analyzer(path):
     edges = cv2.Sobel(blurred_img, cv2.CV_64F, 1, 1, ksize=5)
     edges = np.uint8(np.absolute(edges))
 
-    _, threshold = cv2.threshold(gray_image, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
-    #_, threshold = cv2.threshold(gray_image, 127, 255, cv2.THRESH_BINARY)
+    #_, threshold = cv2.threshold(gray_image, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    _, threshold = cv2.threshold(gray_image, 127, 255, cv2.THRESH_BINARY)
     #edges = cv2.Canny(gray_image, 50, 150)
     contours, _ = cv2.findContours(threshold, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
     cv2.drawContours(image, contours, 1, (0, 255, 0), 12)
 
     contours_detected = []
     contours_area = 0
+    space_area = 0
 
     count_of_counturs = 0
     img_coordinate = []
@@ -29,6 +30,8 @@ def analyzer(path):
         area = cv2.contourArea(contour)
         epsilon = 0.15 * cv2.arcLength(contour,True)
         approx = cv2.approxPolyDP(contour,epsilon,True)
+
+        
 
         #Współrzedne elementów w magazynie
         if  len(approx) > 3 and len(approx) < 5 and area > 6000 and area < 100000   :
@@ -44,7 +47,7 @@ def analyzer(path):
 
             img_coordinate.append(cordin)
         #Współrzędne środka przestrzeni magazynowej
-        if len(approx) > 3 and len(approx) < 5 and area > 100000 and area < 2000000 :
+        if len(approx) > 3 and len(approx) < 5 and area > 100000 and area <2000000 :
             space_contures = approx
             cv2.drawContours(image, [approx], -1, (255, 255, 0), 10)
 
@@ -70,6 +73,8 @@ def analyzer(path):
 
     if(space_area > 0):
         percent_full = round(((contours_area/space_area)*100),2)
+    else:
+        percent_full = 0
 
     return [img_coordinate, percent_full]
 

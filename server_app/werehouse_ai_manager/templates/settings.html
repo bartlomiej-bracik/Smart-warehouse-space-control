@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em;
+        }
+
+
+        tr:nth-child(odd){background:#eee;}
+        table{width:100%;}
+         td{padding:10px;}
+        th{background: #000;color: #fff;}
+
+
+        body{
+            background-color: #e0e7eb;
+            max-width: 90%;
+            text-align: center
+
+        }
+        img{
+        text-align: center
+        }
+
+        button{
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+    </style>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart warehouse -settings</title>
+</head>
+<body>
+    <header>
+    <h1 >Smart warehouse - prototype</h1>
+  </header>
+
+  <a href="/"><button> Powrót </button></a>
+
+  <form action="/set_model">
+    <p> <b>Wybierz model ucznia maszynowego jaki ma być zastostosowany do pomiarów stanu magazynowego </b> </p>
+    <input type="checkbox" name="medel1" value="<modle1>">
+    <label for="model1"> Model oparty na analize OpenCV</label><br>
+    <input type="checkbox" name="model2" value="model1">
+    <label for="model2"> Model oparty na binarnym zdjeciu</label><br>
+        <br>
+    <input type="submit" value="OK">
+  </form> 
+
+  <br><br>
+  <form action="/set_font">
+    <p> <b>Wybierz rozmiar czcionki </b> </p>
+    <input type="checkbox" name="font1" value="<font1>">
+    <label for="model1"> Mała</label><br>
+    <input type="checkbox" name="font2" value="font2">
+    <label for="model2"> Średnia</label><br>
+    <input type="checkbox" name="font3" value="font3">
+    <label for="model2"> Duża</label><br>
+    <br>
+    <input type="submit" value="OK">
+  
+</form> 
+
+<br><br>
+<form action="/historic_data">
+    <p> <b>Czy wyświetlać dane historyczne ? </b> </p>
+    <input type="checkbox" name="font1" value="<font1>">
+    <label for="model1"> </label><br>
+    
+    <br>
+    <input type="submit" value="OK">
+  
+</form> 
+
+
+  
+  <script>
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    
+    checkboxes.forEach((checkbox) => {
+      checkbox.addEventListener('change', () => {
+        checkboxes.forEach((otherCheckbox) => {
+          if (otherCheckbox !== checkbox) {
+            otherCheckbox.checked = false;
+          }
+        });
+      });
+    });
+    </script>
+
+
+</body>
+</body>
+</html>
